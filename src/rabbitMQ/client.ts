@@ -35,7 +35,7 @@ class RabbitMQClient {
 
             // const {queue: replyQueueName} = await this.consumerChannel.assertQueue('');
             const {queue: replyQueueName} = await this.consumerChannel.assertQueue(
-                config.rabbitMQ.queues.serverCommentQueue,
+                config.rabbitMQ.queues.serverReviewQueue,
                 // {exclusive: true}
                 );
 

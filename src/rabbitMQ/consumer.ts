@@ -5,12 +5,12 @@ export default class Consumer {
     constructor( private channel: Channel, private rpcQueueName: string ){}
 
     async consumeMessages(){
-        console.log('It is person server side to consume.');
+        console.log('It is review server side to consume.');
         this.channel.consume(
             this.rpcQueueName,
             async (message: ConsumeMessage) => {
             const {correlationId, replyTo} = message.properties;
-            const operation = message.properties.headers.function;
+            const routingKey = message.properties.headers.routingKey;
 
             if (!correlationId || !replyTo) {
                 console.log('Missing some properties ...');
@@ -23,7 +23,7 @@ export default class Consumer {
             }
 
             await MessageHandler.handle(
-                operation,
+                routingKey,
                 // JSON.parse(message.content.toString()).operation,
                 JSON.parse(message.content.toString()),
                 correlationId,

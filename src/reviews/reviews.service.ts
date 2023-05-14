@@ -8,7 +8,8 @@ import { CreateReviewDto } from './dto/createReviewDto';
 export class ReviewsService {
 
     constructor(
-        @InjectModel(Review) private reviewRepo: typeof Review,
+        @InjectModel(Review) 
+        private reviewRepo: typeof Review,
         private commentsService: CommentsService) {}
     
     async createReview( dto: CreateReviewDto ) {

@@ -15,13 +15,13 @@ export class Review extends Model<Review> {
    primaryKey: true})
 reviewId: number;
 
-@Column({ type: DataType.STRING(64), allowNull: false })
+@Column({ type: DataType.STRING(64) })
 reviewAuthor: string;
 
 @Column({ type: DataType.STRING(64) })
 reviewTitle: string;
 
-@Column({ type: DataType.STRING(1024) })
+@Column({ type: DataType.STRING(8192) })
 reviewText: string;
 
 @Column({ type: DataType.STRING(64) })

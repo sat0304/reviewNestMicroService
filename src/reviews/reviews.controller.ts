@@ -22,7 +22,7 @@ export class ReviewsController {
         return await this.reviewService.getAllReviews();
     }
 
-    @Patch(':reviewId')
+    @Patch('/:reviewId')
     async updateReview(
         @Param('reviewId') reviewId: number,
         commentIds: number[]) {

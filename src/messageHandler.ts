@@ -27,7 +27,6 @@ export default class MessageHandler{
     replyTo: string,
   ) {
     let response = {};
-    const {reviewId} = data;
 
     switch (routingKey) {
       case 'postReview':
@@ -35,6 +34,7 @@ export default class MessageHandler{
         response = 'New reviews are created';
         break;
       case 'getReview': 
+        const {reviewId} = data;
         response = await reviewsController.getById(reviewId);
         break;
       case 'getReviews':
@@ -42,7 +42,7 @@ export default class MessageHandler{
         break;
       case 'getComment': 
         const {commentId} = data;
-        response = response = await commentsController.getById(commentId);
+        response = await commentsController.getById(commentId);
         break;
       case 'getComments': 
         response = await commentsController.getAllComments();

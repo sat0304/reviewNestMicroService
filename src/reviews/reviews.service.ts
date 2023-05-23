@@ -23,7 +23,7 @@ export class ReviewsService {
     }
     
     async getAllReviews() {
-        // const Reviews = await this.ReviewRepo.findAll();
+        // const reviews = await this.reviewRepo.findAll();
         const reviews = await this.reviewRepo.findAll({ include: { all: true }});
         return reviews;
       }
@@ -33,7 +33,6 @@ export class ReviewsService {
         commentIds: number[] ) {
         const review = await this.reviewRepo.findOne(
             { where: { reviewId }});
-    
         for (let i = 0; i < commentIds.length; i++) {
             let comment = await this.commentsService.getCommentById(
                 commentIds[i]);

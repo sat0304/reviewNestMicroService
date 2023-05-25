@@ -20,8 +20,8 @@ async getCommentById(commentId: number ) {
 }
 
 async getAllComments() {
-    // const comments = await this.commentRepo.findAll();
-    const comments = await this.commentRepo.findAll({ include: { all: true }});
+    const comments = await this.commentRepo.findAll();
+    // const comments = await this.commentRepo.findAll({ include: { all: true }});
     return comments;
   }
 }

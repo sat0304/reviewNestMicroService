@@ -22,11 +22,11 @@ export class ReviewList {
       const reviews = reviewList.entityJSON;
 
       for (let i = 0; i < reviews.length; i++) {
-        let reviewId = Number(reviews[i].reviewId);
-        let reviewAuthor = reviews[i].author;
-        let reviewTitle = reviews[i].title;
-        let reviewText = reviews[i].text;
-        let reviewDate = reviews[i].reviewDate;
+        const reviewId = Number(reviews[i].reviewId);
+        const reviewAuthor = reviews[i].author;
+        const reviewTitle = reviews[i].title;
+        const reviewText = reviews[i].text;
+        const reviewDate = reviews[i].reviewDate;
         await reviewsController.create({
           reviewId,
           reviewAuthor,
@@ -37,13 +37,13 @@ export class ReviewList {
         });
         if (reviews[i].comments != null) {
           const commentList = reviews[i].comments;
-            let commentReviewIds = [];
+            const commentReviewIds = [];
             for (let j = 0; j < commentList.length; j++) {
               commentReviewIds.push(Number(commentList[j].commentId));
-              let commentId = Number(commentList[j].commentId);
-              let commentAuthor = commentList[j].author;
-              let commentText = commentList[j].text;
-              let commentDate = commentList[j].commentDate;
+              const commentId = Number(commentList[j].commentId);
+              const commentAuthor = commentList[j].author;
+              const commentText = commentList[j].text;
+              const commentDate = commentList[j].commentDate;
               await commentsController.create({
                 commentId, 
                 commentAuthor,
@@ -63,4 +63,22 @@ export class ReviewList {
         console.log('The review already exists', 3001);
     }
   }
+
+  // async createComments(commentList: any, reviewId: number) {
+  //   for (let j = 0; j < commentList.length; j++) {
+  //     commentReviewIds.push(Number(commentList[j].commentId));
+  //     let commentId = Number(commentList[j].commentId);
+  //     let commentAuthor = commentList[j].author;
+  //     let commentText = commentList[j].text;
+  //     let commentDate = commentList[j].commentDate;
+  //     await commentsController.create({
+  //       commentId, 
+  //       commentAuthor,
+  //       commentText,
+  //       reviewId,
+  //       commentDate
+  //   });
+
+  // }
+  // }
 }

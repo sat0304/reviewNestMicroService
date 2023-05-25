@@ -15,7 +15,7 @@ export class Comment extends Model<Comment> {
    primaryKey: true})
 commentId: number;
 
-@Column({ type: DataType.STRING(64), allowNull: false })
+@Column({ type: DataType.STRING(64), allowNull: false})
 commentAuthor: string;
 
 @Column({ type: DataType.STRING(1024) })
@@ -28,7 +28,6 @@ commentDate: string;
 review: Review;
 
 @ForeignKey(() => Review)
-@Column({type: DataType.INTEGER,
-         allowNull: false})
+@Column({type: DataType.INTEGER})
 reviewId: number;
 }

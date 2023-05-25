@@ -2,7 +2,7 @@ import { CommentsController } from "./comments/comments.controller";
 import { Comment } from "./comments/comments.model";
 import { CommentsService } from "./comments/comments.service";
 import { ReviewList } from "./jsonParser";
-import rabbitClient from "./rabbitMQ/client"
+import rabbitClient from "./rabbitMQ/client";
 import { ReviewsController } from "./reviews/reviews.controller";
 import { Review } from "./reviews/reviews.model";
 import { ReviewsService } from "./reviews/reviews.service";
@@ -40,6 +40,10 @@ export default class MessageHandler{
       case 'getReviews':
         response = await reviewsController.getAllReviews();
         break;
+      // case 'postComment':
+      //     await reviewList.createComments(data);
+      //     response = 'New reviews are created';
+      //     break;
       case 'getComment': 
         const {commentId} = data;
         response = await commentsController.getById(commentId);

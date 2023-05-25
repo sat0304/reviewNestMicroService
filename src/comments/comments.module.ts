@@ -10,6 +10,6 @@ import { Comment } from "./comments.model";
   providers: [CommentsService],
   imports: [
     SequelizeModule.forFeature([Comment, Review])],
-  exports: [CommentsService]
+  exports: [CommentsService],
 })
 export class CommentsModule {}

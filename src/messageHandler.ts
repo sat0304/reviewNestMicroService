@@ -1,3 +1,4 @@
+import { HttpStatus } from "@nestjs/common";
 import { CommentsController } from "./comments/comments.controller";
 import { Comment } from "./comments/comments.model";
 import { CommentsService } from "./comments/comments.service";
@@ -27,23 +28,23 @@ export default class MessageHandler{
     replyTo: string,
   ) {
     let response = {};
+    const {reviewId} = data;
 
     switch (routingKey) {
       case 'postReview':
         await reviewList.createReviews(data);
-        response = 'New reviews are created';
+        response = data.entityJSON;
         break;
+      case 'postComment':
+        await reviewList.createComments(data, reviewId);
+        response = data.comments;
+        break;  
       case 'getReview': 
-        const {reviewId} = data;
         response = await reviewsController.getById(reviewId);
         break;
       case 'getReviews':
         response = await reviewsController.getAllReviews();
         break;
-      // case 'postComment':
-      //     await reviewList.createComments(data);
-      //     response = 'New reviews are created';
-      //     break;
       case 'getComment': 
         const {commentId} = data;
         response = await commentsController.getById(commentId);

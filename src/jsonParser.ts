@@ -37,7 +37,7 @@ export class ReviewList {
         });
         if (reviews[i].comments != null) {
           const commentList = reviews[i].comments;
-            const commentReviewIds = [];
+          const commentReviewIds = [];
             for (let j = 0; j < commentList.length; j++) {
               commentReviewIds.push(Number(commentList[j].commentId));
               const commentId = Number(commentList[j].commentId);
@@ -64,21 +64,31 @@ export class ReviewList {
     }
   }
 
-  // async createComments(commentList: any, reviewId: number) {
-  //   for (let j = 0; j < commentList.length; j++) {
-  //     commentReviewIds.push(Number(commentList[j].commentId));
-  //     let commentId = Number(commentList[j].commentId);
-  //     let commentAuthor = commentList[j].author;
-  //     let commentText = commentList[j].text;
-  //     let commentDate = commentList[j].commentDate;
-  //     await commentsController.create({
-  //       commentId, 
-  //       commentAuthor,
-  //       commentText,
-  //       reviewId,
-  //       commentDate
-  //   });
-
-  // }
-  // }
+  async createComments(commentList: any, reviewId: number) {
+    try {
+      const commentReviewIds = [];
+      const comments = commentList.comments;
+      for (let j = 0; j < comments.length; j++) {
+        commentReviewIds.push(Number(comments[j].commentId));
+        let commentId = Number(comments[j].commentId);
+        let commentAuthor = comments[j].author;
+        let commentText = comments[j].text;
+        let commentDate = comments[j].commentDate;
+          await commentsController.create({
+          commentId, 
+          commentAuthor,
+          commentText,
+          reviewId,
+          commentDate
+        });
+      }
+     await reviewsController.updateReview
+     (
+      reviewId,
+      commentReviewIds,
+     );
+  } catch (e) {
+    console.log('The comment already exists', 3002);
+   }
+ }
 }

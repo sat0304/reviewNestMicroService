@@ -12,9 +12,8 @@ export class CommentsController {
         return await this.commentService.createComment(dto);
     }
 
-    @Get('/:commentId')
-    async getById(
-        @Param('commentId') commentId: number) {
+    @Get()
+    async getById( commentId: number ) {
         return await this.commentService.getCommentById( commentId );
     }
 

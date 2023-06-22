@@ -13,7 +13,7 @@ export class ReviewsController {
     }
 
     @Get('/:reviewId')
-    async getById(@Param('reviewId') reviewId: any  ) {
+    async getById(@Param('reviewId') reviewId: number  ) {
         return await this.reviewService.getReviewById( reviewId );
     }
 

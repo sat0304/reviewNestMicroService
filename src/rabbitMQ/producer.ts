@@ -1,4 +1,4 @@
-import { Channel} from "amqplib";
+import { Channel } from "amqplib";
 
 export default class Producer {
     constructor( private channel: Channel){}
